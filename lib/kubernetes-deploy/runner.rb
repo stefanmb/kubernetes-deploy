@@ -21,6 +21,7 @@ require 'kubernetes-deploy/kubernetes_resource'
   replica_set
   service_account
   daemon_set
+  stateful_set
 ).each do |subresource|
   require "kubernetes-deploy/kubernetes_resource/#{subresource}"
 end
