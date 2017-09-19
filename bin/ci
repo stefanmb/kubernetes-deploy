@@ -8,6 +8,7 @@ fi
 docker run --rm \
 	--net=host \
 	-v "$HOME/.kube":/"$HOME/.kube" \
+    -v "$HOME/.minikube":/"$HOME/.minikube" \
     -v "$PWD":/usr/src/app \
     -w /usr/src/app \
     ruby:2.3 \
