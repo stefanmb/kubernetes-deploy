@@ -10,6 +10,7 @@ docker run --rm \
 	-v "$HOME/.kube":/"$HOME/.kube" \
     -v "$HOME/.minikube":/"$HOME/.minikube" \
     -v "$PWD":/usr/src/app \
+    -v "/usr/local/google-cloud-sdk/bin/kubectl":"/usr/bin/kubectl" \
     -w /usr/src/app \
     ruby:2.3 \
     sh -c "bundle install --jobs 4 && bundle exec rake test"
