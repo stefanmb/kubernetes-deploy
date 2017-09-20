@@ -301,8 +301,9 @@ class KubernetesDeployTest < KubernetesDeploy::IntegrationTest
     assert_logs_match_all([
       "Deployment/cannot-run: FAILED",
       "The following containers are in a state that is unlikely to be recoverable:",
-      "container-cannot-run: Failed to start (exit 127):",
-      "Container command '/some/bad/path' not found or does not exist."
+      %r{container-cannot-run: Failed to start \(exit 127\): .*'/some/bad/path'.*},
+      "no such file or directory", # logs from unrunnable container
+      "Hello from Docker!" # logs from successful init container
     ], in_order: true)
   end
 
@@ -512,7 +513,7 @@ class KubernetesDeployTest < KubernetesDeploy::IntegrationTest
 
     assert_logs_match_all([
       "Failed to deploy 1 priority resource",
-      "hello-cloud: Failed to start (exit 127): Container command '/some/bad/path' not found or does not exist.",
+      %r{hello-cloud: Failed to start \(exit 127\): .*'/some/bad/path'.*},
       "Error response from daemon", # from an event
       "no such file or directory" # from logs
     ], in_order: true)
