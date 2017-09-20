@@ -4,6 +4,7 @@ metadata:
   name: crash-loop
 spec:
   replicas: 3
+  progressDeadlineSeconds: 30
   template:
     metadata:
       labels:

@@ -4,6 +4,7 @@ metadata:
   name: bad-probe
 spec:
   replicas: 1
+  progressDeadlineSeconds: 30
   template:
     metadata:
       labels:
